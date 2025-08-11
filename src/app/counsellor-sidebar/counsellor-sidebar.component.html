@@ -1,0 +1,60 @@
+<nav id="navbar" class="bg-white fixed  w-full z-50 top-0 border-b  border-grey-500 start-0">
+   <div class="max-w-screen-xl flex items-center justify-between mx-auto p-1 px-12">
+     <div class="flex items-center">
+       <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 sm:hidden focus:outline-none focus:ring-2 focus:ring-gray-200">
+         <span class="sr-only">Open sidebar</span>
+         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+           <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+         </svg>
+       </button>
+     </div>
+     <div class="flex-1 flex items-center  ml-[-9vw] space-x-[33vw]">
+       <img src="/assets/img/logofull.png" id="logo" class="h-12"> <!-- Adjust the height as needed -->
+       <h1  class="text-md text-indigo-900  font-semibold">Kristu Jayanti Well Being Centre</h1>
+     </div>
+     <div class="flex items-center mr-[-6.5vw] ">
+       <a class="text-sm text-indigo-900 flex items-center  logout-link"  (click)="onLogout()"  >
+         Logout<img src="/assets/Icon/logout.svg" class="ml-2 h-5"> <!-- Adjust the height as needed -->
+       </a>
+     </div>
+   </div>
+ </nav>
+ 
+ <aside id="default-sidebar" class="fixed top-[6.6%] left-0 z-40 w-64 h-[93vh]  border-r-2 border-grey-500 shadow-sm transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+    <div class="h-full pl-3 py-0 overflow-y-auto bg-white">
+       <ul class="space-y-2 font-medium" id="sidelist">
+          <li>
+             <a routerLink="/counsellorUpcomingSession" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="flex items-center p-2 text-gray-900  text-sm hover:bg-gray-100 ">
+                <img src="/assets/Icon/Booking.svg" id="dashimg">
+                <span class="ms-3">Upcoming Sessions</span>
+             </a>
+          </li>
+          <li>
+            <a  routerLink="/SessionHistory" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="flex items-center p-2 text-gray-900  text-sm hover:bg-gray-100 ">
+               <img src="/assets/Icon/history.svg" id="dashimg">
+               <span class="ms-3">Sessions History</span>
+            </a>
+         </li>
+         <li>
+            <a routerLink="/Profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="flex items-center p-2 text-gray-900  text-sm hover:bg-gray-100 ">
+               <img src="/assets/Icon/Profile.svg" id="dashimg">
+               <span class="ms-3" id="sidebarelements">Profile</span>
+            </a>
+         </li>
+         <li>
+          <a routerLink="/My-Availability" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="flex items-center p-2 text-gray-900  text-sm hover:bg-gray-100 ">
+             <img src="/assets/Icon/Availability.svg" id="dashimg">
+             <span class="ms-3">My Availability</span>
+          </a>
+       </li>
+       </ul>
+       
+       <div id="kjsdc" class="flex items-center justify-center space-y-2 flex-col text-gray-500">
+        <h3>DEVELOPED BY</h3>
+        <hr class="custom-hr">
+        <img src="/assets/img/Kjsdc.svg">
+      </div>
+    </div>
+ </aside>
+ 
+ 

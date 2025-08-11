@@ -1,0 +1,79 @@
+.container{
+  margin-top: 9vh;
+  width: calc(100vw - 17rem);
+  height: auto;
+  margin-left: 20rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+}
+#Background{
+  background: linear-gradient(to bottom, #E2F6FC, #ffffff)
+}
+
+.input{
+  height: 45vh;
+}
+mat-calendar{
+  width: 25vw;
+}
+#slotsButton{
+  border: #4050B5 solid;
+  transition: ease-in .3s;
+}
+#Calendar{
+  display: none;
+}
+#Timeslot{
+  display: none;
+  width: 50vw;
+  border: grey;
+}
+ #form{
+  width: 40vw;
+  display: none;
+}
+#no-slots{
+  display: none;
+} 
+button{
+  transition: ease-in 0.3s;
+}
+#Booked{
+  display: none;
+}
+#Booked{
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(10px);
+}
+@media (max-width: 640px){
+  .container{
+    margin-left: 0;
+    width: 95vw;
+    height: 250vh;
+  }
+  mat-calendar{
+    width: 40vw;
+  }
+  #Timeslot{
+    margin-top: 0;
+    width: 40vw;
+  }
+}
+
+@media (max-width: 450px){
+  .container{
+    margin-top: 4rem;
+    margin-left: 12.5vw;
+
+    }
+  mat-calendar{
+    width: 70vw;
+  }
+  #Timeslot{
+    width: 80vw;
+  }
+  #form{
+    width: 80vw;
+  }
+}

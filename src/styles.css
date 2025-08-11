@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import "~ag-grid-community/styles/ag-grid.css";
+@import "~ag-grid-community/styles/ag-theme-alpine.css"; /* or any other theme you prefer */
+@import 'src/assets/ball-fussion.css';
+
+
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.meditation-img{
+    margin-top: -60px;
+}
+.testimonial-p{
+    font-size: 8.4px;
+} 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Add these styles in your styles.css or app.component.css */
+.ngx-spinner .sk-ball-fussion .sk-child {
+  background-color: #fff; /* Ensure the ball color is visible */
+}
+
+.ngx-spinner {
+  display: flex !important; /* Force display in case it's hidden */
+}
+
+/* Manually added styles for ball-fussion animation */
+.sk-ball-fussion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sk-ball-fussion .sk-child {
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+  background-color: #fff; /* Change color if needed */
+  border-radius: 100%;
+  animation: sk-fussion 1.2s infinite ease-in-out both;
+}
+
+@keyframes sk-fussion {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.3); }
+}

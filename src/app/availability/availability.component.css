@@ -1,0 +1,49 @@
+#Calendar{
+    width: 25vw;
+}
+#SelectOperation{
+  display: none;
+}
+    .container{
+    margin-top: 9vh;
+    width: calc(100vw - 17rem);
+    height: auto;
+    margin-left: 17rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+  }
+  #Background{
+    background: linear-gradient(to bottom, #E2F6FC, #ffffff)
+  }
+  /* #slotBorder{
+    border:#4050B5 solid 3px;
+  } */
+  #Reason{
+    border: 4px;
+    border-radius: 15px;
+    border-color: black;
+  }
+  #Timeslot{
+    display: none;
+    width: 55vw;
+  }
+  #Timeslot2{
+    display: none;
+    width: 55vw;
+  }
+  
+
+  #ConfirmCancel{
+    margin-top: 15px;
+    display: none;
+  }
+  #Blocked{
+    display: none;
+  }
+  #Reason{
+    margin-top: 15px;
+    display: none;
+  }
+  #UnBlocked{
+    display: none;
+  }

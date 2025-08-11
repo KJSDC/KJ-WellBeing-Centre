@@ -1,0 +1,275 @@
+<div id="background" class="fixed z-20 top-0 left-0 w-screen overflow-hidden overflow-x-hidden h-screen bg-gradient-to-b from-[#F4F7FE] to-white"></div>
+
+<app-counsellor-sidebar></app-counsellor-sidebar>
+<main  *ngIf="isFormVisible"  [@fadeInOut] class="   z-40 relative    ">
+<div class="flex -ml-36 flex-wrap ">
+    <div class=" flex flex-col flex-wrap md:max-w-xl lg:max-w-2xl   mt-10 w-full sm:w-[calc(100vw-24rem)]   sm:ml-[2rem]">
+
+    <div class="  p-2 rounded-t-lg bg-gradient-to-r from-cyan-50 to-cyan-100">
+        <div class=" flex  font-normal text-xs    ">
+          <div class="flex w-full ml-16 justify-center">
+            <div  class=" text-base font-medium  items-centerborder ">{{profileForm.get('student_name')?.value }}</div>
+          </div>
+            <svg (click)="closeForm()" class="w-4 h-4 cursor-pointer ml-[60px] " fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </div>
+
+        <div class="flex  font-normal text-xs   ">
+            <div class="flex w-full ml-16 justify-center ">
+                <span class="  ml-10   text-center	">{{profileForm.get('student_sem')?.value }}  {{profileForm.get('student_course')?.value }} </span>
+            </div>
+            <span class="  flex-none "> {{profileForm.get('slot_start_time_milliseconds')?.value }} - {{profileForm.get('slot_end_time_milliseconds')?.value }}</span>
+        </div>
+    </div>
+    
+    <div class=" border p-4 shadow-lg bg-white ">
+        <!-- [formGroup]="profileForm" (ngSubmit)="onSubmit()" -->
+<form [formGroup]="profileForm" (submit)="onSubmit()"  >
+    <div class="grid gap-5 p-4 lg:grid-cols-4 sm:auto-cols-max md:auto-cols-max ">
+        <div class="col-span-2 font-light   ">
+            <label for="Referred_by" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Referred by</label>
+            <p class="bg-gray-100 text-gray-900 text-xs rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " required >  {{profileForm.get('referred_by')?.value }} </p>
+        </div>
+        <div class="col-span-2  ">
+            <label for="Referrer_Email" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Referrer Email</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required > {{profileForm.get('referrer_Email')?.value}} </p>
+        </div>
+        <div class="col-span-2">
+            <label for="Register_No" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Register No.</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_id')?.value }} </p>
+        </div>  
+        <div class="col-span-2">
+            <label for="Name" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Name </label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_name')?.value }} </p>
+        </div>
+    
+        <div class="col-span-2">
+            <label for="Department" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Department </label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_department')?.value }} </p>
+        </div>
+        <div class="col-span-2">
+            <label for="Course" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Course</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_course')?.value }} </p>
+        </div>
+        <div  class=" grid  ">
+            <label for="Age" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Age</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_age')?.value }} </p>
+        </div>
+        <div >   
+            <label for="Gender" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Gender</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required >  {{profileForm.get('student_gender')?.value }} </p>
+        </div>
+        <div class="col-span-2">
+            <label for="Student_Email" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Student Email</label>
+            <p class="bg-gray-100   text-gray-900 text-xs rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" > 
+              {{profileForm.get('student_email')?.value}} </p>
+        </div>
+
+    
+        <div class="col-start-2">
+          <label for="_id" class="block mb-1 text-xs font-medium text-gray-900 dark:text-white">Session No.</label>
+          <input
+              type="text"
+              formControlName="_id"
+              class="bg-gray-100 text-gray-900 text-xs  rounded-lg focus:ring-blue-500 focus:border-blue-500 border-none w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              [placeholder]=" profileForm.get('_id')?.value  "
+              readonly
+          >
+      </div>
+    <div *ngIf="profileForm.get('selectedOption')?.value === true" class="col-start-3 animate-fade-in  ">
+        
+        <label for="Duration" class="block mb-1  text-xs font-medium text-gray-900 dark:text-white">Select an Duration</label>
+        <select id="Duration" formControlName="Duration" class="bg-gray-100  border-none text-gray-900 text-xs  rounded-lg focus:ring-blue-400 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option selected></option>
+            <option value="10Mins">10-Mins</option>
+            <option value="20Mns">20-Mins</option>
+            <option value="30Mins">30-Mins</option>  
+        </select>  
+        <div *ngIf="profileForm.get('Duration')?.invalid && profileForm.get('Duration')?.touched" class="text-red-500 text-xs">
+          {{ getErrorMessage('Duration') }}
+        </div>
+    </div>
+    <div class="col-start-4  ">
+      <label for="medical-message" class="block    text-xs font-medium text-gray-900 dark:text-white">Session Status</label>
+
+        <div class="  flex flex-auto items-center justify-between   text-xs  dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600">
+            <label class="mr-3 flex items-center gap-1">
+              <input type="radio" name="selectedOption" formControlName="selectedOption" [value]="true" (change)="onOptionChange()"> Attended
+            </label>
+            <label class="flex items-center gap-1">
+              <input type="radio" name="selectedOption" formControlName="selectedOption" [value]="false" (change)="onOptionChange()"> Not Attended
+
+            </label>
+          </div>
+    </div>
+ 
+    <div *ngIf="profileForm.get('selectedOption')?.value === true" class="col-span-2 animate-fade-in">
+  <span class="flex">
+    <label for="medical-message" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">Past Medical History</label>
+    <div class="flex flex-auto items-center justify-end mr-2">
+      <input id="medical-yes" formControlName="Medical_History_radio_button" [value]="true" type="radio" class="mr-2 bg-gray-100 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+      <label for="medical-yes" class="text-xs font-medium mr-3 text-gray-900 dark:text-gray-300">Yes</label>
+      <input id="medical-no" formControlName="Medical_History_radio_button" [value]="false" type="radio" class="mr-2 bg-gray-100 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+      <label for="medical-no" class="text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
+    </div>
+  </span>
+
+  <div *ngIf="profileForm.get('Medical_History_radio_button')?.value === true">
+    <textarea formControlName="medicalHistoryDetails" rows="4" class="block border-none p-2.5 w-full text-xs text-gray-900 bg-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 animate-fade-in" placeholder="Details of treatment" required></textarea>
+    <div *ngIf="profileForm.get('medicalHistoryDetails')?.invalid && profileForm.get('medicalHistoryDetails')?.touched" class="text-red-500 text-xs">
+      {{ getErrorMessage('medicalHistoryDetails') }}
+    </div>
+  </div>
+</div>
+
+
+    <div *ngIf="profileForm.get('selectedOption')?.value === true"  class="col-span-2 animate-fade-in ">
+        <span class=" flex   ">  
+            <label for="psychiatric-message" class=" mb-1 text-sm font-medium text-gray-900 dark:text-white">Past Psychiatric History</label>
+            <div class="flex flex-auto items-center justify-end mr-2 ">
+        <input id="psychiatric-yes" type="radio" formControlName="Psychiatric_History_radio_button" [value]="true"  class=" mr-2  bg-gray-100   dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600">
+        <label for="psychiatric-yes" class=" text-xs font-medium mr-3 text-gray-900 dark:text-gray-300">Yes</label>
+        <input id="psychiatric-no" type="radio" formControlName="Psychiatric_History_radio_button" [value]="false"  class="mr-2 bg-gray-100   dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600">
+        <label for="psychiatric-no" class="  text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
+    </div>
+    </span>
+    <div *ngIf="profileForm.get('Psychiatric_History_radio_button')?.value === true">
+                <textarea formControlName="psychiatricHistoryDetails" rows="4" class="block border-none p-2.5 w-full text-xs text-gray-900 bg-gray-100 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 animate-fade-in " placeholder="Details of treatment"></textarea>
+                <div *ngIf="profileForm.get('psychiatricHistoryDetails')?.invalid && profileForm.get('psychiatricHistoryDetails')?.touched" class="text-red-500 text-xs">
+                    {{ getErrorMessage('psychiatricHistoryDetails') }}
+                  </div>
+            </div>
+            </div>
+
+
+    <div *ngIf="profileForm.get('selectedOption')?.value === true"  class="col-span-full animate-fade-in ">
+
+<label for="concerns" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Concerns Discussed</label>  
+<textarea id="concerns" formControlName="ConcernsDiscussedDetails" rows="4" class="block border-none p-2.5 w-full text-xs text-gray-900 bg-gray-100 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter in upto 1000 words"></textarea>
+<div *ngIf="profileForm.get('ConcernsDiscussedDetails')?.invalid && profileForm.get('ConcernsDiscussedDetails')?.touched" class="text-red-500 text-xs">
+    {{ getErrorMessage('ConcernsDiscussedDetails') }}
+  </div>   
+</div>
+
+<!-- FurtherMessageDetails -->
+<div *ngIf="profileForm.get('selectedOption')?.value === true" class="col-span-2 animate-fade-in">
+  <span class="flex">
+    <label for="Further-message" class="mb-1 text-sm font-medium text-gray-900 dark:text-white">Further Referrals</label>
+    <div class="flex flex-auto items-center justify-end mr-2">
+      <input id="Further-yes" type="radio" formControlName="FurtherMessage_radio_button" [value]="true" class="mr-2 bg-gray-100 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+      <label for="Further-yes" class="text-xs font-medium mr-3 text-gray-900 dark:text-gray-300">Yes</label>
+      <input id="Further-no" type="radio" formControlName="FurtherMessage_radio_button" [value]="false" class="mr-2 bg-gray-100 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+      <label for="Further-no" class="text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
+    </div>
+  </span>
+  <div *ngIf="profileForm.get('FurtherMessage_radio_button')?.value === true">
+    <textarea formControlName="FurtherMessageDetails" rows="4" class="block border-none p-2.5 w-full text-xs text-gray-900 bg-gray-100 rounded-lg border focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 animate-fade-in" placeholder="Details"></textarea>
+    <div *ngIf="profileForm.get('FurtherMessageDetails')?.invalid && profileForm.get('FurtherMessageDetails')?.touched" class="text-red-500 text-xs">
+      {{ getErrorMessage('FurtherMessageDetails') }}
+    </div>
+  </div>
+</div>
+
+    
+
+    <div *ngIf="profileForm.get('selectedOption')?.value === true"  class="col-span-2  animate-fade-in ">
+        <span class=" flex ">  
+        <label for="FollowupSession-message" class="   text-xs font-medium  text-gray-900 dark:text-white">Recommended Follow-up Session </label>
+        <div class="flex flex-auto items-center justify-end  ">
+        <input id="FollowupSession-yes" type="radio"  formControlName="Recommended_radio_button" [value]="true" checked name="Recommended_radio_button" class=" mr-1  bg-gray-100   dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600">
+        <label for="FollowupSession-yes" class=" text-xs font-medium mr-1 text-gray-900 dark:text-gray-300">Yes</label>
+        <input id="FollowupSession-no" type="radio"  formControlName="Recommended_radio_button" [value]="false" name="Recommended_radio_button" class="mr-1 bg-gray-100   dark:focus:ring-blue-600 dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600">
+        <label for="FollowupSession-no" class="  text-xs font-medium text-gray-900 dark:text-gray-300">No</label>
+    </div>
+    </span>
+        
+    </div>
+    <div  class=" col-start-4 animate-fade-in ">
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </div>
+    </div>
+
+
+  </form>
+
+</div>
+</div>
+<div class=" lg:ml-4 lg:mt-16 ">
+
+
+    
+        <div class="mb-4">
+        
+          <div> 
+        <div  class="flex flex-auto flex-wrap ">
+          
+          
+            <div  class="p-4 "></div>
+            <div class="p-4 lg:w-96 sm:w-96 sm:mt-4 relative overflow-hidden bg-cyan-300 opacity- rounded-xl shadow ">
+              <div class="absolute -top-16 -left-10">
+                <div class="h-44 w-44 rounded-full overflow-hidden  bg-white opacity-20"></div>
+              </div>
+              <div>
+                <div class="flex flex-col items-center justify-center">
+                  <h5 class="mb-5 text-2xl font-bold tracking-tight text-white dark:text-white">No. of Sessions Attended</h5>
+
+                  
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <h5 class="mb-5 text-2xl font-bold tracking-tight text-white dark:text-white">{{profileForm.get('completedSessions')?.value }} </h5>
+                </div>
+                
+                <div class="absolute top-36 left-24">
+                  <div class="h-28 w-28 rounded-full overflow-hidden  bg-white opacity-20 " ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+
+     
+        
+            <div> 
+        <div  class="flex flex-auto flex-wrap ">
+          
+          
+            <div  class="p-4 "></div>
+            <div  class="p-4 lg:w-96 sm:w-96  relative overflow-hidden bg-cyan-300  rounded-xl shadow ">
+              <div class="absolute -top-16 -left-10">
+                <div class="h-44 w-44 rounded-full overflow-hidden  bg-white opacity-20"></div>
+              </div>
+              <div>
+                <div class="flex flex-col items-center justify-center">
+                  <h5 class="mb-5 text-2xl font-bold tracking-tight text-white dark:text-white">Counsellors</h5>
+
+                  
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <h5 *ngFor="let name of profileForm.get('counselorNames')?.value" class="mb-2 text-xl  tracking-tight text-white dark:text-white">{{ name }}</h5>
+
+                </div>
+                
+                <div class="absolute top-36 left-24">
+                  <div class="h-28 w-28 rounded-full overflow-hidden  bg-white opacity-20"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    
+   
+</div>
+</div> 
+
+
+</main>
+
+
+   
+
+  

@@ -1,0 +1,62 @@
+.container {
+    margin-top: 9vh;
+    width: calc(100vw - 25rem);
+    height: auto;
+    margin-left: 20rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    
+}
+.to{
+    display: block;
+    padding-left: 18px;
+}
+
+/* Responsive styles for .container */
+@media (max-width: 1024px) {
+    .container {
+        width: calc(100vw - 10rem);
+        margin-left: 5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: calc(100vw - 4rem);
+        margin-left: 2rem;
+        height: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: 100vw;
+        margin-left: 0;
+        height: auto;
+        margin-top: 6vh;
+        border-radius: 0px;
+        
+    }
+}
+
+#Background {
+    background: linear-gradient(to bottom, #E2F6FC, #ffffff);
+}
+
+/* Responsive styles for cards */
+.p-4 {
+    width: 100%;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .p-4 {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .p-4 {
+        width: 33.33%;
+    }
+}

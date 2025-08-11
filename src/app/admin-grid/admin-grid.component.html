@@ -1,0 +1,15 @@
+<div id="Background" class="fixed z-0 top-0 left-0 w-screen h-screen">
+   <app-admin-sidebar></app-admin-sidebar>
+    <div class="container  p-5 px-0 z-30 relative mt-[14vh] w-full sm:w-[calc(100vw-24rem)]   h-auto sm:ml-[20rem] bg-white shadow-lg">
+      <div class="flex p-5">
+        <h1 class="text-center text-lg text-bold text-blue-600">Session History</h1>
+        <button class="ml-[80%]"><img src="/assets/Icon/Group.svg" alt=""></button>
+      </div>
+      <ag-grid-angular
+        style="height: 500px;"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs">
+      </ag-grid-angular>
+    </div>
+  </div>

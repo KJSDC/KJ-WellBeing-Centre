@@ -1,0 +1,18 @@
+.focus-green{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5); /* Customize the green color as needed */
+  }
+#changePassword{
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(10px);
+}
+
+@media screen and (max-width: 642px) {
+  .SAVE{
+    margin-left: 0%;
+  }
+  .container{
+    top: -5vh;
+  }
+}                                                                           

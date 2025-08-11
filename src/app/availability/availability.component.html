@@ -1,0 +1,138 @@
+<div id="Background" class="fixed z-20 top-0 left-0 w-screen h-screen"></div>
+<app-counsellor-sidebar></app-counsellor-sidebar>
+
+<div class="container holder flex flex-wrap justify-center p-5 z-30 relative md:h-screen">
+  <div class="flex flex-col md:flex-row w-full">
+    
+    <div id="Calendar" class="md:w-1/3 flex-none">
+      <mat-card>
+        <mat-calendar [dateFilter]="myFilter" [(selected)]="selected" (selectedChange)="onDateSelected($event)">
+        </mat-calendar>
+      </mat-card>
+    </div>
+
+    <div class="w-full md:w-2/3 flex flex-col items-center">
+      <div id="SelectOperation" class="w-full flex justify-center md:justify-start mt-4 md:mt-0">
+        <span class="gap-4 p-2 flex flex-row items-center">
+          <input type="radio" id="BlockedDateSelect" name="Blocked/Unblock" value="block" [(ngModel)]="selectedOption" (change)="onBlockSelected()">
+          <label for="BlockedDateSelect" class="mr-4">Block Slots</label>
+          
+          <input type="radio" id="UnblockedDateSelect" name="Blocked/Unblock" value="unblock" [(ngModel)]="selectedOption" (change)="onUnblockSelected()">
+          <label for="UnblockedDateSelect">Unblock Slots</label>
+        </span>
+      </div>
+
+      <div *ngIf="selectedOption === 'block'" class="w-full mt-4">
+        <div class="flex-1" id="Timeslot">
+          <div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+            <div class="md:flex">
+              <div class="p-8 w-full">
+                <div class="uppercase tracking-wide text-lg text-center text-black font-semibold">Pick Slots To be Blocked</div>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6" id="time-slots">
+                  <button 
+                  *ngFor="let slot of SlotList" 
+                  class="p-2 text-sm rounded-lg"
+                  style="transition: ease-in .3s;"
+                  [ngStyle]="{ 'background-color': isSelected(slot.start_time, slot.end_time) ? '#4050B5' : '#FFFFFF','color': isSelected(slot.start_time, slot.end_time) ? 'white' : 'black' , 'border': '#4050B5 solid 2px' }"
+                  (click)="onTimeClick(slot.start_time, slot.end_time)">
+                  {{ slot.start_time }} - {{ slot.end_time }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="ConfermCancell" class="input bg-white text-black p-5 flex-1 align-bottom rounded-lg flex flex-col justify-center items-center">
+            <button class="py-2 px-4 bg-teal-400 text-m text-white rounded-lg" (click)="Next()">Continue</button>
+          </div>     
+          <div id="Reason" class="input bg-white text-black p-5 flex-1 align-bottom rounded-lg flex gap-4 flex-col justify-center items-center">
+            <div class="flex flex-col-reverse">
+              <input
+                placeholder="Enter Your Reason"
+                class="peer outline-none border pl-2 py-1 duration-500 border-black focus:border-dashed relative placeholder:duration-500 placeholder:absolute focus:placeholder:pt-10 focus:rounded-md"
+                type="text"
+                [(ngModel)]="reason"
+              />
+              <span class="pl-2 duration-500 opacity-0 peer-focus:opacity-100 -translate-y-5 peer-focus:translate-y-0">
+                Enter Your Reason
+              </span>
+            </div>      
+            <button class="p-2 bg-red-500 text-sm text-white rounded-lg" (click)="onBlocked()">Block Slots</button>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <div *ngIf="selectedOption === 'unblock'" class="w-full mt-4">
+      <div class="flex-1" id="Timeslot2">
+        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6">
+          <div class="md:flex">
+            <div class="p-8 w-full">
+              <div class="uppercase tracking-wide text-lg text-center text-black font-semibold">Pick Slots To be Unblocked</div>
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6" id="time-slots">
+                <button 
+                *ngFor="let slot of BlockedSlotList" 
+                class="p-2 bg-grey-400 text-sm text-white rounded-lg"
+                style="transition: ease-in .3s;"
+                [ngStyle]="{ 'background-color': isSelected(slot.start_time, slot.end_time) ? '#4050B5' : '#FFFFFF','color': isSelected(slot.start_time, slot.end_time) ? 'white' : 'black' , 'border': '#4050B5 solid 2px' }"
+                (click)="onUnblockTimeClick(slot.start_time, slot.end_time)">
+                {{ slot.start_time }} - {{ slot.end_time }}
+              </button>
+            </div>
+          </div>
+        </div>
+      <div id="Unblock" class="input bg-white text-black p-5 flex-1 align-bottom rounded-lg flex gap-4 flex-col justify-center items-center">   
+        <button class="p-2 bg-red-500 text-sm text-white rounded-lg" (click)="onUnBlocked()" >Unblock Slots</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="Blocked" class="overflow-y-auto overflow-x-hidden fixed inset-0 z-50 justify-center items-center">
+  <div class="flex items-center justify-center min-h-screen px-4">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-56 h-auto">
+      <div class="bg-white p-6 items-center">
+        <img src="./assets\confirm logo.svg" class="mx-12 mb-1"  alt="confirmBooking">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Your slots have been Blocked</h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">Blocked slots {{ selectedTimes }}</p>
+        </div>
+        <div class="mt-4">
+          <button class="btn flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-transparent rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"(click)="FinalClick()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <div id="UnBlocked" class="overflow-y-auto overflow-x-hidden fixed inset-0 z-50 justify-center items-center">
+  <div class="flex items-center justify-center min-h-screen px-4">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-56 h-auto">
+      <div class="bg-white p-6 items-center">
+        <img src="./assets\confirm logo.svg" class="mx-12 mb-1"  alt="confirmBooking">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Your slots have been Un blocked</h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">UnBlocked slots {{ selectedTimes }}</p>
+        </div>
+        <div class="mt-4">
+          <button class="btn flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-transparent rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"(click)="FinalClick()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+    
+ <!-- <footer class="m-4">
+  <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8 flex items-center justify-center">
+    <img src="assets/kjsdc.png" alt="Kristu Jayanti Logo" class="h-12" />
+    <p class="text-slate-500">
+      © Powered by Kristu Jayanti Software Development Centre
+    </p>
+  </div>
+</footer>  -->

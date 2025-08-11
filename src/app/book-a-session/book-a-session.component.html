@@ -1,0 +1,120 @@
+<div id="Background" class="fixed z-20 top-0 left-0 w-screen h-screen"></div>
+<app-sidebar></app-sidebar>
+
+<div class="container holder flex flex-wrap justify-center gap-4 p-5 z-30 relative flex-row  md:h-screen">
+  <div class="flex flex-col md:flex-row">
+    <div class="flex-1 mb-4 md:mr-4 md:mb-0">
+      <select class="w-60 h-10 mb-4" name="counseler" id="counsilerselect" (change)="onSelectCounselor($event)">
+        <option value="" disabled [selected]="!selectedCounselorId">Select a counselor</option>
+        <option *ngFor="let counselor of counselors" [value]="counselor.counsellor_id">
+          {{ counselor.name }}
+        </option>
+      </select>      
+      <div id="Calendar">
+        <mat-card>
+        <mat-calendar [dateFilter]="myFilter" [(selected)]="selected" (selectedChange)="onDateSelected($event)">
+          <div *matCalendarBodyCell="let date" class="mb-4">
+            {{ date.getDate() }}
+          </div>
+        </mat-calendar>
+       </mat-card>
+        <!-- <label for="noslot" class="text-red-500 text-sm">{{message}}</label> -->
+      </div>
+    </div>
+
+    <!-- Time Slots Section -->
+    <div class="flex-1" id="Timeslot">
+      <div class=" mx-auto bg-white rounded-xl shadow-md  p-4">
+        <div class="uppercase tracking-wide text-lg text-center text-black font-semibold">Pick a Time</div>
+        <div class="md:flex">
+          <div class="p-2">
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4" id="time-slots">
+              <button id="slotsButton" class="p-2 text-sm text-black rounded-lg" [style.background-color]="selectedStartTime === available.start_time ? '#4050B5' : '#FFFFFF'" [style.color]="selectedStartTime === available.start_time ? 'white' : 'black'"  (click)="ontimeclick(available.start_time, available.end_time)" *ngFor="let available of available_date">
+                {{available.start_time}} - {{available.end_time}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <form id="form" class="input bg-white text-black px-5 py-5 flex-1 align-bottom gap-4 rounded-lg shadow-2xl">
+      <div class="check-box flex justify-center -mb-1">
+        <input type="checkbox" value="checked" (change)="handleSelfCheckboxChange($event)">
+        <label for="" class="text-xs font-medium text-black mr-14 ml-1 mb-2">Self reference</label>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div class="relative z-0 w-full mb-2 group">
+          <input type="text" name="referred_by" id="referred_by" [(ngModel)]="referred_by" class="block py-2 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
+          <label for="referred_by" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Referred by</label>
+          <label for="age validate" class="text-red-500 text-center text-sm">{{ RefWarn }}</label>
+        </div>
+        <div class="relative z-0 w-full mb-2 group">
+          <input type="email" name="referrer_email" id="referrer_email" [(ngModel)]="referrer_email" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
+          <label for="referrer_email" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Referrer Email</label>
+          <label for="age validate" class="text-red-500 text-center text-sm">{{ RefWarnEm }}</label>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mt-2">
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="text" name="register_no" id="register_no" [(ngModel)]="registerNo" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " readonly />
+          <label for="register_no" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Register No.</label>
+        </div>
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="text" name="name" id="name" [(ngModel)]="name" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" readonly />
+          <label for="name" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mt-5">
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="text" name="department" id="{{ department }}" [(ngModel)]="department" value="Computer Science (PG)" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" readonly />
+          <label for="department" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Department</label>
+        </div>
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="text" name="course" id="course" [(ngModel)]="course" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " readonly />
+          <label for="course" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Course</label>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mt-5">
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="text" name="gender" id="gender" [(ngModel)]="gender" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" readonly />
+          <label for="gender" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Gender</label>
+        </div>
+        <div class="relative z-0 w-full mb-1 group">
+          <input type="number" name="age" id="age" [(ngModel)]="age" class="block py-2.5 px-0 w-full text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="" required />
+          <label for="age" class="peer-focus:font-medium absolute text-xs text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Age</label>
+          <label for="age validate" class="text-red-500 text-center text-sm">{{ ageWarn }}</label>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button type="button" class="btn flex mt-6 mb-1 items-center justify-center bg-teal-400 hover:bg-teal-300 text-white font-medium py-1 px-4 border border-gray-300 rounded-lg shadow-md " (click)="sendBookingData()">Book Slot</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div id="Booked" class="overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center">
+  <div class="flex items-center justify-center min-h-screen px-4">
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all w-56 h-auto">
+      <div class="bg-white p-6 items-center">
+        <img src="./assets\confirm logo.svg" class="mx-12 mb-1"  alt="confirmBooking">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Your slot has been booked</h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">Your appointment with is confirmed with {{ selectedCounselorName }} for {{ formattedDate }} at {{ selectedTime }}.</p>
+        </div>
+        <div class="mt-4">
+          <button class="btn flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 border border-transparent rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" (click)="closeBooked()" >Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

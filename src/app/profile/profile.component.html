@@ -1,0 +1,107 @@
+<div id="background" class="fixed z-20 top-0 left-0 w-screen overflow-hidden overflow-x-hidden h-screen bg-gradient-to-b from-[#E2F6FC] to-white"></div>
+<app-counsellor-sidebar></app-counsellor-sidebar>
+<div class="container p-5 px-0 z-30 relative mt-[14vh] w-full sm:w-[calc(100vw-24rem)] overflow-hidden  h-auto sm:ml-[20rem] bg-white shadow-lg">
+    <div class="profile w-full h-[80px] mt-[-20px] bg-[url('src/assets/img/bg.svg')]  bg-center bg-cover p-[25px]  mx-0">
+        <h2 class="text-base font-semibold mb-6">Counsellor Profile</h2>
+    </div>
+    <div class="space-y-4 px-5">
+        <form [formGroup]="profileForm" >
+            <div class="form-group d-block d-flex flex-col">
+                <p class="mt-1 block w-full text-lg sm:text-2xl p-2">{{ profileForm.get('name')?.value }}</p>
+                <div class="employeeID flex">
+                    <p class="text-xs font-medium text-gray-700">Employee ID:</p>
+                    <p class="text-xs">{{ profileForm.get('employeeId')?.value }}</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700">Gender:</label>
+                    <input type="text" formControlName="gender" class="mt-1 block w-full shadow-sm text-sm border-0 bg-gray-100 rounded-md" readonly>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700">Phone Number:</label>
+                    <div class="relative">
+                      <input type="text" formControlName="phoneNo" [readonly]="!isPhoneEditable" 
+                             [ngClass]="{'focus-green': isPhoneEditable, 'border-red-500': profileForm.get('phoneNo')?.invalid && profileForm.get('phoneNo')?.touched}" 
+                             class="mt-1 block w-full shadow-sm text-sm border-0 bg-gray-100 rounded-md">
+                      <button type="button" class="absolute inset-y-0 right-0 px-3 py-1 text-red-600 hover:text-[#c53030] hover:scale-110 active:scale-90" 
+                              (click)="togglePhoneEdit()">
+                        <img src="assets/img/Vector.svg" alt="Edit">
+                      </button>
+                    </div>
+                    <div *ngIf="profileForm.get('phoneNo')?.errors?.['required'] && profileForm.get('phoneNo')?.touched" class="text-red-500 text-sm mt-1">
+                      Phone number is required.
+                    </div>
+                    <div *ngIf="profileForm.get('phoneNo')?.errors?.['pattern'] && profileForm.get('phoneNo')?.touched" class="text-red-500 text-sm mt-1">
+                      Phone number is invalid.
+                    </div>
+                    <div *ngIf="isPhoneEditable" class="SAVE flex items-end justify-end ml-[50%] mt-2 sm-ml-[100%] sm:justify-start">
+                        <button type="button" class="bg-blue-500 text-white ml-auto py-2 px-4 rounded" 
+                                (click)="savePhoneNumber()">Save</button>
+                      </div>
+                </div>
+            
+                <!-- <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700">Date of Birth:</label>
+                    <input type="text" formControlName="dob" class="mt-1 block w-full shadow-sm text-sm border-0 bg-gray-100 rounded-md" readonly>
+                </div> -->
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700">Email:</label>
+                    <input type="email" formControlName="email" class="mt-1 block w-full shadow-sm text-sm border-0 bg-gray-100 rounded-md" readonly>
+                </div>
+            </div>
+            <div class="mt-6">
+                <h3 class="font-semibold mb-4">My Login Credentials</h3>
+                <div class="flex items-center mb-4">
+                    <img src="assets/img/sms.svg" alt="Email Icon" class="w-7 h-7 p-1 mr-2 ring-1 bg-blue-100 rounded-full">
+                    <div class="flex flex-col">
+                        <p class="block w-60 text-sm text-gray-600 rounded-md px-2">{{ profileForm.get('email')?.value }}</p>
+                        <p class="block w-full text-sm rounded-md px-2">********</p>
+                    </div>
+                </div>
+                <button class="bg-red-100 text-red-600 py-2 px-4 rounded mt-2"  (click)="ChangepassOpen()">Change Password</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Main modal -->
+<div id="changePassword" class="overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Change Password
+                </h3>
+                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" (click)="  ChangepassClose()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+                <form class="space-y-4" [formGroup]="ChangePass">
+                    <div>
+                        <label for="OldPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your current Password</label>
+                        <input type="password" formControlName="OldPassword" name="OldPassword" id="OldPassword" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    </div>
+                    <div>
+                        <label for="NewPassword" class="block mb-2 text-sm font-medium text-gray-900">Enter Your New Password</label>
+                        <input type="password" formControlName="NewPassword" name="NewPassword" id="NewPassword" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    </div> 
+                    <div>
+                      <label for="ConfirmNewPassword" class="block mb-2 text-sm font-medium text-gray-900">Confirm your New Password</label>
+                      <input type="password" formControlName="ConfirmNewPassword" name="ConfirmNewPassword" id="ConfirmNewPassword" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                  </div> 
+                    <button type="submit" class="w-full text-white bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" (click)="onChangePass()">Change Password</button>
+                    <button type="button" class="w-full text-white bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" (click)="  ChangepassClose()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

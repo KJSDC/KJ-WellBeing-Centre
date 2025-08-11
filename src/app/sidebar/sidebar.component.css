@@ -1,0 +1,51 @@
+#sidelist{
+    margin-top: 4.8vh;
+}
+#logo{
+    padding: 6px;
+}
+#dashimg{
+    height: 20px;
+    width: 20px;
+}
+#sidebarelements{
+    font-family: "DM Sans", sans-serif;
+}
+h3{
+    font-family: "Inter", sans-serif; 
+    font-weight: 400;
+    font-size: 12px;
+}
+#kjsdc{
+   
+    position: absolute;
+      bottom: 0;
+      left: 50%; /* Center horizontally */
+      transform: translateX(-50%); /* Adjust for centering */
+      text-align: center; /* Center text */
+}
+
+
+.custom-hr {
+    width: 389%;
+    border: none;
+    border-top: 1px solid #ccc; /* Adjust the color and thickness as needed */
+    position: absolute;
+    bottom: 42px; /* Adjust this value based on the height of #kjsdc */
+    left: 0;
+    transform: translateX(-50%) ;
+    margin: 0; /* Ensure no additional margin is added */
+}
+.active{
+    color: #4318FF;
+    transition: ease-in 0.3s;
+    border-right: #4318FF solid 4px;
+}
+#navbar{
+    border-bottom: #000000;
+}
+
+.logout-link {
+    cursor: pointer; /* Changes the cursor to a pointer */
+  }
+  

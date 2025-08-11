@@ -1,0 +1,10 @@
+.my-custom-spinner .sk-ball-fussion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .my-custom-spinner .sk-ball-fussion .sk-child {
+    background-color: #fff;
+  }
+  

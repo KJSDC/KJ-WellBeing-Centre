@@ -1,0 +1,70 @@
+#mainNav{
+    background-color: #C5DFFD;
+}
+.wrap{
+    max-width: 100%;
+    position: relative;
+}
+.wrap button{
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    bottom: 2%;
+}
+.fas {
+    position: absolute;
+    top: 70%;
+    right: 1rem; /* Adjust position from the right edge */
+    transform: translateY(-50%);
+  }
+.nav-item a{
+  gap: 30.1px;
+}
+#College{
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+a{
+font-family: "Poppins", sans-serif;
+font-size: 10.85;
+font-weight: 400;
+}
+#loginbtn2{
+    display: none;
+}
+.active{
+    color: teal;
+}
+ #passwordcontainer{
+display: none;
+} 
+#Otpverificationcontainer{
+    display: contents;
+}
+#authentication-modal{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+}
+#adminAuth{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+}
+#ForgotPass{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+}
+@media (max-width: 762px){
+    .nav-item a{
+        gap: none;
+      } 
+   #loginbtn{
+    display: none;
+   }
+   #loginbtn2{
+    display: block;
+}
+}

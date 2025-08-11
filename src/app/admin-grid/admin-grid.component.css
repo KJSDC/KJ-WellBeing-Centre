@@ -1,0 +1,17 @@
+.container{
+    margin-top: 9vh;
+    width: 75vw;
+    height: auto;
+    margin-left: 20rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    
+  }
+  #Background{
+    background: linear-gradient(to bottom, #E2F6FC, #ffffff)
+  }
+  .ag-theme-alpine{
+    width:  75vw;
+    height: auto;
+    border: 1px solid white;
+  }

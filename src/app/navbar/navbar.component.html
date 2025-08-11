@@ -1,0 +1,219 @@
+
+    <div class="w-full bg-sky-200 flex flex-wrap items-center justify-between mx-auto p-4">
+    <a class="flex items-center ml-8 space-x-3 rtl:space-x-reverse">
+        <img src="\assets\img\logofull.png" style="scale: 2.0;" class="h-5 mt-3 ml-[4vw] mb-4" >
+    </a>
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <button (click)="displayUserLogin()" class="block text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center " type="button" id="loginbtn">Login</button>
+        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+        </button>
+    </div>
+    <div class="items-center justify-between bg-transparent hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+        <li class="nav-item">
+            <a   routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="block py-2 px-3 text-gray-900 hover:bg-transparent rounded md:bg-transparent  md:p-0" >Home</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent  md:hover:text-teal-700 md:p-0 md:dark:hover:text-teal-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">About</a>
+        </li> -->
+        <li class="nav-item">
+          <a routerLink="/termsandconditions" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent  md:hover:text-teal-700 md:p-0 md:dark:hover:text-teal-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Terms & Conditions</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a  class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent  md:hover:text-teal-700 md:p-0 md:dark:hover:text-teal-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Contact Us</a>
+        </li> -->
+        <li class="nav-item">
+            <a routerLink="/counsellors" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}" class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent  md:hover:text-teal-700 md:p-0 md:dark:hover:text-teal-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Counsellors</a>
+          </li>
+        <li class="nav-item">
+            <a><button (click)="displayUserLogin()" class="block text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-teal-700" type="button" id="loginbtn2">Login</button></a>
+          </li>
+
+      </ul>
+    </div>
+    </div>
+  
+    <!----------------------------------------- User Login --------------------------------------------------->
+ 
+<div id="authentication-modal"  class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-100% max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    Login
+                </h3>
+                 <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" (click)="closeUserLogin()" (click)="removeMesage()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+                <form [formGroup]="StuLogin" class="space-y-4" action="#">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" formControlName="Email" name="email" id="Email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-slate-400 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-900 dark:text-white" placeholder="youremail@kristujayanti.com.com"  required />
+                        <div class="flex flex-col items-end">
+                            <label *ngIf="!otpSent" (click)="sendOtp()" class="text-teal-300 text-sm cursor-pointer">Click to send OTP</label>
+                            <label *ngIf="otpSent && currentTime > 0" class="text-gray-400 text-xs">Resend available in {{ currentTime }} seconds</label>
+                            <label *ngIf="otpSent && currentTime <= 0" (click)="sendOtp()" class="text-teal-300 text-xs cursor-pointer">Resend OTP</label>
+                            <label *ngIf="Negetivemessage" class="text-red-700 text-xs"> {{ Negetivemessage }}</label>
+                            <label *ngIf="Positivemessage" class="text-green-700 text-xs"> {{ Positivemessage }}</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="otp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your OTP</label>
+                            <input formControlName="Otp" id="Otp" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"  [type]="isPasswordVisibleUser ? 'text' : 'password'"  required/>
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="Logbtn" class="w-full text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-0 text-center py-2" (click)="onClick()">Login</button>
+                </form>
+            <label for="adminLogin"  (click)="closeUserLogin()" (click)="removeMesage()" (click)="displayAdminLogin()" class="text-sm">Counsellor?<u class="text-blue-500  cursor-pointer ml-2">Login Here</u></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+  
+  
+  
+  
+
+
+
+  <!----------------------------------------- Admin Login --------------------------------------------------->
+  <div id="adminAuth"  class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-100% max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content for admin login-->
+        <div class="relative bg-white rounded-lg">
+            <!-- Modal header for admin login -->
+            <div class="flex items-center justify-between p-4 md:p-5">
+                <h3 class="text-xl font-semibold text-center text-gray-900">
+                   Counsellor Login
+                </h3>
+                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" (click)="closeAdminLogin()" (click)="removeMesage()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body for admin login -->
+            <div class="p-4 md:p-5">
+                <form class="space-y-4" [formGroup]="AdminLogin">
+                    <div>
+                        <label for="AdminEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="AdminEmail" formControlName="AdminEmail" name="AdminEmail" id="AdminEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-slate-400 block w-full p-2.5" placeholder="youremail@kristujayanti.com" required />
+                    </div>
+                    <div class="relative" >
+                        <label for="Password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your Password</label>
+                            <input  id="Password"   [type]="isPasswordVisibleAdmin ? 'text' : 'password'"  formControlName="Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                            <i class="fas" [ngClass]="isPasswordVisibleAdmin ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()" aria-hidden="true" ></i>
+                    </div>
+                    <label *ngIf="Positivemessage" class="text-green-700 text-xs"> {{ Positivemessage }} </label>
+                    <label *ngIf="Negetivemessage" class="text-red-700 text-xs"> {{ Negetivemessage }} </label>
+                    <button type="submit" id="Logbtn" class="w-full text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-0 text-center py-2"  (click)="adminOnClick()" >Login</button>
+                </form>
+                <label for="admin"  class="text-sm cursor-pointer text-blue-500" (click)="removeMesage()" (click)="closeAdminLogin()" (click)="displayForgotPass()" > <u>Forgot Password</u> ?</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+  <!----------------------------------------- Forgot Password --------------------------------------------------->
+
+
+
+<div id="ForgotPass" class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-100% max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    Forgot Password
+                </h3>
+                <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" (click)="closeForgotPass()" (click)="removeMesage()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+                <form [formGroup]="ForgotPass" class="space-y-4" action="#">
+                    <div id="Otpverificationcontainer">
+                        <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" formControlName="email" name="email" id="mail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-slate-400 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-900 dark:text-white" placeholder="youremail@kristujayanti.com.com" required />
+                        <div class="flex flex-col items-end">
+                                <label *ngIf="!otpSent" (click)="sendAdminOtp()" class="text-teal-300 text-sm cursor-pointer">Click to send OTP</label>
+                                <label *ngIf="otpSent && currentTime > 0" class="text-gray-400 text-xs">Resend available in {{ currentTime }} seconds</label>
+                                <label *ngIf="otpSent && currentTime <= 0" (click)="sendAdminOtp()" class="text-teal-300 text-xs cursor-pointer">Resend OTP</label>
+                                <label *ngIf="Negetivemessage" class="text-red-700 text-xs"> {{ Negetivemessage }}</label>
+                                <label *ngIf="Positivemessage" class="text-green-700 text-xs"> {{ Positivemessage }}</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="otp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your OTP</label>
+                            <input  id="Otp" formControlName="Otp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                    </div>
+                        <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-0 text-center py-2" (click)="Verify()">Verify OTP</button>
+                </div>
+                    <div id="passwordcontainer">
+                    <div class="relative">
+                        <label for="Password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your NewPassword</label>
+                            <input id="Password"  [type]="isPasswordVisibleforgotpass ? 'text' : 'password'" formControlName="Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                            <i class="fas" [ngClass]="isPasswordVisibleforgotpass ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibilityForgotPass()" aria-hidden="true" ></i>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <label *ngIf="Negetivemessage" class="text-red-700 text-xs"> {{ Negetivemessage }}</label>
+                        <label *ngIf="Positivemessage" class="text-green-700 text-xs"> {{ Positivemessage }}</label>
+                </div>
+                    <div class="relative">
+                        <label for="ConfirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm your new Password</label>
+                            <input id="ConfirmPassword" [type]="isPasswordVisibleconforgotpass ? 'text' : 'password'" formControlName="Confirm Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                            <i class="fas" [ngClass]="isPasswordVisibleconforgotpass ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibilityForgotConPass()" aria-hidden="true" ></i>
+                    </div>  
+                        <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="Logbtn" class="w-full text-white bg-teal-400 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-0 text-center py-2" (click)="changePassword()"(click)="removeMesage()" (click)="closeForgotPass()" (click)="displayAdminLogin()" >Login</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<!-- profile.component.html -->
+<app-navbar></app-navbar>
+<main class="h-[100%] pt-5 bg-gradient-to-b from-sky-200 to-white">
+  <h1 class="text-3xl font-bold text-center text-teal-600 mb-6">
+    Counsellors at the Student Well-being Centre
+  </h1>
+  <!-- <div class="max-w-6xl mx-auto p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
+      <div *ngFor="let profile of profiles" class="flex flex-col items-center p-4 bg-white border border-gray-300 rounded-lg shadow-md">
+        <img src="/assets/img/profile.jpg" alt="{{ profile.name }}'s profile image" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover mb-4">
+        <div class="text-center">
+          <h2 class="text-xl font-semibold mb-4 text-l">{{ profile.name }}</h2>
+          <p class="text-gray-700 text-center"><strong>Qualification:</strong> {{ profile.qualification }}</p>
+          <p class="text-gray-600 text-justify"><strong>Areas of Interest:</strong></p>
+          <p class="text-justify">{{ profile.area_of_interest_array.trim() }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="max-w-6xl mx-auto p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
+      <div *ngFor="let profile of profiles" class="flex flex-col items-center p-4 bg-white border border-gray-300 rounded-lg shadow-md">
+        <div class="mb-4">
+          <ng-container [ngSwitch]="profile.name">
+            <img *ngSwitchCase="'Dr. Alice Aloysius'" src="/assets/KJ09F0126.jpg" alt="Dr. Alice Aloysius" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-fit">
+            <img *ngSwitchCase="'Ms. Jyotsana'" src="/assets/KJ24F0546.JPG" alt="Ms. Jyotsana" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-fit">
+            <!-- Add more cases as needed -->
+            <img *ngSwitchDefault src="/assets/img/profile.jpg" alt="Default profile image" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover">
+          </ng-container>
+        </div>
+        <div class="text-center">
+          <h2 class="text-xl font-semibold mb-4 text-l">{{ profile.name }}</h2>
+          <p class="text-gray-700 text-center"><strong>Qualification:</strong> {{ profile.qualification }}</p>
+          <p class="text-gray-600 text-justify"><strong>Areas of Interest:</strong></p>
+          <p class="text-justify">{{ profile.area_of_interest_array.trim() }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="m-4">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8 flex items-center justify-center">
+      <img src="assets/kjsdc.png" alt="Kristu Jayanti Logo" class="h-12" />
+      <p class="text-slate-500">
+        © Powered by Kristu Jayanti Software Development Centre
+      </p>
+    </div>
+  </footer> 
+</main>

@@ -1,0 +1,43 @@
+<div id="background" class="fixed z-20 top-0 left-0 w-screen overflow-hidden overflow-x-hidden h-screen bg-gradient-to-b from-[#E2F6FC] to-white"></div>
+<app-counsellor-sidebar></app-counsellor-sidebar>
+<div class="container holder gap-4 p-5 z-30 relative shadow-2xl flex-row md:h-screen">
+  <div class="main" *ngIf="showMainContent">
+  <p class="text-blue-700 mb-8">Today</p>
+  <div class="relative max-w-sm ">
+    <mat-form-field >
+      <mat-label>Choose a date</mat-label>
+      <input  matInput [matDatepicker]="picker" id="default-datepicker" (dateChange)="getDatePickerValue($event)">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>   
+  </div>  
+
+  <form class="flex flex-wrap" [formGroup]="counsellorForm">
+    <div class="flex flex-auto flex-wrap">
+      <div class="p-4" *ngFor="let session of sessions">
+        <div class="lg:w-[320px] lg:h-24 relative overflow-hidden border flex justify-between rounded-xl">
+          <div class="bg-[#d8d6d6] h-14 w-16 my-5 text-[10px] mx-5 items-center px-[10px] py-[6px]">
+            {{ session.start_time }}<span class="to items-center ">to</span> {{ session.end_time }}
+          </div>
+          <div class="mt-2 ml-[-13px]">
+            <p class="title text-xl mt-[9px]">{{ session.student_name }}</p>
+            <p class="class text-xs">{{ session.sem }}{{ session.course }}</p>
+            <p id="studentID" class="text-xs">{{ session.student_id }}</p>
+          </div>
+          <div class="bg-[#d8d6d6] h-24 w-20 py-[35px] px-[20px] items-center"  [ngClass]="{
+            'bg-green-500': session.slot_status === 'completed',
+            'bg-red-500': session.slot_status === 'Missed',
+            'bg-[#d8d6d6]': session.slot_status !== 'completed' && session.slot_status !== 'Missed'
+          }">
+            <button class="view-button" (click)="viewSessionDetails()" (click)="viewSessionDetails2(session)">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+  <div *ngIf="!showMainContent" class="upcoming-sessions">
+    <app-upcoming-session-counseller></app-upcoming-session-counseller>
+  </div>
+</div>
