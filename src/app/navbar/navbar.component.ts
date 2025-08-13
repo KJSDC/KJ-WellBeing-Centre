@@ -246,6 +246,7 @@ Verify() {
   });
 }
 changePassword() {
+  console.log(this.ForgotPass.value);
   const password = this.ForgotPass.get('Password')?.value ?? '';
   const ConfirmPassword = this.ForgotPass.get('ConfirmPassword')?.value ?? '';
    console.log(password)
